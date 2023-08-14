@@ -125,7 +125,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://pyresi.mesto.back.nomoreparties.co/',
+  baseUrl: 'https://pyresi.mesto.back.nomoreparties.co',
   headers: {
     authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json',
