@@ -6,7 +6,7 @@ class Api {
 
   _checkResponse(res) {
     if (res.ok) {
-      return res.json();
+      return res.json().data;
     }
 
     return Promise.reject(`Ошибка: ${res.status}`);
@@ -23,6 +23,7 @@ class Api {
       headers: this.headers,
     });
   }
+
   getUserInfo() {
     return this._request(`/users/me`, {
       headers: this.headers,
