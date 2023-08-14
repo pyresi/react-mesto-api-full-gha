@@ -3,7 +3,7 @@ import { UserContext } from '../contexts/CurrentUserContext';
 
 function Card({ card, onCardLike, onCardClick, onCardDelete }) {
   const { currentUser } = useContext(UserContext);
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((i) => i === currentUser._id);
 
   function handleLikeClick() {
     onCardLike(card);
@@ -25,7 +25,7 @@ function Card({ card, onCardLike, onCardClick, onCardDelete }) {
         alt={card.name}
         onClick={handleCardClick}
       />
-      {card.owner._id === currentUser._id ? (
+      {card.owner === currentUser._id ? (
         <button
           className="element__trash"
           type="button"
