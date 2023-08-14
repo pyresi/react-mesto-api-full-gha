@@ -58,8 +58,8 @@ function App() {
         .then(([userData, cards]) => {
           // тут установка данных пользователя
           // и тут отрисовка карточек
-          setCurrentUser(userData);
-          setCards(cards);
+          setCurrentUser(userData.data);
+          setCards(cards.data);
         })
         .catch(console.error)
     );
