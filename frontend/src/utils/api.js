@@ -1,7 +1,7 @@
 class Api {
   constructor(config) {
     this.baseUrl = config.baseUrl;
-    this.headers = config.headers;
+    this.makeHeaders = config.makeHeaders;
   }
 
   _checkResponse(res) {
@@ -20,20 +20,20 @@ class Api {
 
   getInitialCards() {
     return this._request(`/cards`, {
-      headers: this.headers,
+      headers: this.makeHeaders()
     });
   }
 
   getUserInfo() {
     return this._request(`/users/me`, {
-      headers: this.headers,
+      headers: this.makeHeaders()
     });
   }
 
   changeAvatar(avatar) {
     return this._request(`/users/me/avatar`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: this.makeHeaders(),
       body: JSON.stringify({
         avatar: avatar,
       }),
@@ -43,7 +43,7 @@ class Api {
   postCard(name, link) {
     return this._request(`/cards`, {
       method: 'POST',
-      headers: this.headers,
+      headers: this.makeHeaders(),
       body: JSON.stringify({
         name: name,
         link: link,
@@ -54,7 +54,7 @@ class Api {
   editUserInfo(name, about) {
     return this._request(`/users/me`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: this.makeHeaders(),
       body: JSON.stringify({
         name: name,
         about: about,
@@ -74,28 +74,28 @@ class Api {
     // console.log(cardId);
     return this._request(`/cards/${cardId}/likes`, {
       method: 'PUT',
-      headers: this.headers,
+      headers: this.makeHeaders()
     });
   }
 
   deleteLike(cardId) {
     return this._request(`/cards/${cardId}/likes`, {
       method: 'DELETE',
-      headers: this.headers,
+      headers: this.makeHeaders()
     });
   }
 
   deleteCard(cardId) {
     return this._request(`/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this.headers,
+      headers: this.makeHeaders()
     });
   }
 
   registerUser(email, password) {
-    return fetch(`https://pyresi.mesto.back.nomoreparties.co/signup`, {
+    return this._request(`/signup`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: this.makeHeaders(),
       body: JSON.stringify({
         email: email,
         password: password,
@@ -104,11 +104,10 @@ class Api {
   }
 
   loginUser(email, password) {
-    return fetch(`https://pyresi.mesto.back.nomoreparties.co/signin`, {
+    return this._request(`/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify({
         email: email,
@@ -118,20 +117,19 @@ class Api {
   }
 
   verifyUser() {
-    return fetch(`https://pyresi.mesto.back.nomoreparties.co/users/me`, {
+    return this._request(`/users/me`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
+      headers: this.makeHeaders(),
     }).then(this._checkResponse);
   }
 }
 
 export const api = new Api({
   baseUrl: 'https://pyresi.mesto.back.nomoreparties.co',
-  headers: {
-    authorization: `Bearer ${localStorage.getItem('token')}`,
-    'Content-Type': 'application/json',
-  },
+  makeHeaders: () => {
+    return {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    }
+  }
 });
