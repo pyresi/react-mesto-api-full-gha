@@ -127,7 +127,7 @@ class Api {
 export const api = new Api({
   baseUrl: 'https://pyresi.mesto.back.nomoreparties.co/',
   headers: {
-    authorization: 'c64bdc0f-9e69-43d7-913f-b4a8209f730f',
+    authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json',
   },
 });
