@@ -134,7 +134,7 @@ function App() {
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) => {
-          return state.map((c) => (c._id === card._id ? newCard : c));
+          return state.map((c) => (c._id === card._id ? newCard.data : c));
         });
       })
       .catch(console.error);
@@ -156,7 +156,7 @@ function App() {
       .editUserInfo(name, about)
       .then((result) => {
         // console.log(result);
-        setCurrentUser(result);
+        setCurrentUser(result.data);
         closeAllPopups();
       })
       .catch(console.error)
@@ -171,7 +171,7 @@ function App() {
       .changeAvatar(link)
       .then((result) => {
         // console.log(result);
-        setCurrentUser(result);
+        setCurrentUser(result.data);
         closeAllPopups();
       })
       .catch(console.error)
@@ -185,7 +185,7 @@ function App() {
     api
       .postCard(name, link)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([newCard.data, ...cards]);
         closeAllPopups();
       })
       .catch(console.error)
