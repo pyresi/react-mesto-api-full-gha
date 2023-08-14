@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 130.193.53.160
+IP 130.193.53.160
 
 Frontend https://pyresimesto.nomoreparties.co/
 
