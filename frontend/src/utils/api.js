@@ -6,7 +6,7 @@ class Api {
 
   _checkResponse(res) {
     if (res.ok) {
-      return res.json().data;
+      return res.json();
     }
 
     return Promise.reject(`Ошибка: ${res.status}`);
@@ -21,13 +21,13 @@ class Api {
   getInitialCards() {
     return this._request(`/cards`, {
       headers: this.headers,
-    });
+    }.data);
   }
 
   getUserInfo() {
     return this._request(`/users/me`, {
       headers: this.headers,
-    });
+    }.data);
   }
 
   changeAvatar(avatar) {
@@ -37,7 +37,7 @@ class Api {
       body: JSON.stringify({
         avatar: avatar,
       }),
-    });
+    }).data;
   }
 
   postCard(name, link) {
@@ -48,7 +48,7 @@ class Api {
         name: name,
         link: link,
       }),
-    });
+    }).data;
   }
 
   editUserInfo(name, about) {
@@ -59,14 +59,14 @@ class Api {
         name: name,
         about: about,
       }),
-    });
+    }).data;
   }
 
   changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
-      return this.putLike(cardId);
+      return this.putLike(cardId).data;
     } else {
-      return this.deleteLike(cardId);
+      return this.deleteLike(cardId).data;
     }
   }
 
@@ -75,21 +75,21 @@ class Api {
     return this._request(`/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this.headers,
-    });
+    }).data;
   }
 
   deleteLike(cardId) {
     return this._request(`/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this.headers,
-    });
+    }).data;
   }
 
   deleteCard(cardId) {
     return this._request(`/cards/${cardId}`, {
       method: 'DELETE',
       headers: this.headers,
-    });
+    }).data;
   }
 
   registerUser(email, password) {
