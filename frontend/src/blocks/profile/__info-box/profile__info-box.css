@@ -1,0 +1,14 @@
+.profile__info-box {
+  display: flex;
+  max-width: 336px;
+  gap: 18px;
+  margin: 8px 0 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__info-box {
+    width: 282px;
+    margin: 26px auto 0 auto;
+    gap: 10px;
+  }
+}

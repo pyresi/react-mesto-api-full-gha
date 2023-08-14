@@ -1,0 +1,16 @@
+.element {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  max-width: 282px;
+  /* grid-gap: 20px; */
+}
+
+/* @media screen and (max-width: 767px) {
+  .element {
+    width: calc(100% - 38px);
+    margin: 64px 0 0 16px;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+  }
+} */

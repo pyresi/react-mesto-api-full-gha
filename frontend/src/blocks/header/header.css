@@ -1,0 +1,18 @@
+.header {
+  max-width: 880px;
+  margin: 45px auto 0 auto;
+  /* margin-left: clamp(19px, calc(100% -), 200px); */
+  /* margin-right: clamp(19px, 200px, 200px); */
+  display: flex;
+  flex-direction: row;
+  /* padding: 0 19px 0 19px; */
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  color: white;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    margin: 0;
+  }
+}

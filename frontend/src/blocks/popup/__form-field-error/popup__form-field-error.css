@@ -1,0 +1,12 @@
+.popup__form-field-error {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+  color: red;
+  opacity: 0;
+  min-height: 30px;
+  margin-bottom: -30px;
+  transition: 0.3s;
+  z-index: 2;
+}

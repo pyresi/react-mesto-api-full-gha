@@ -1,0 +1,10 @@
+.popup__auth-message {
+  color: #000000;
+  font-weight: 900;
+  width: 358px;
+  padding: 0;
+  margin: 32px auto 60px auto;
+  display: block;
+  /* position: relative; */
+  text-align: center;
+}
