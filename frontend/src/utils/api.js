@@ -100,7 +100,7 @@ class Api {
         email: email,
         password: password,
       }),
-    }).then(this._checkResponse);
+    });
   }
 
   loginUser(email, password) {
@@ -113,14 +113,14 @@ class Api {
         email: email,
         password: password,
       }),
-    }).then(this._checkResponse);
+    });
   }
 
   verifyUser() {
     return this._request(`/users/me`, {
       method: 'GET',
       headers: this.makeHeaders(),
-    }).then(this._checkResponse);
+    });
   }
 }
 
