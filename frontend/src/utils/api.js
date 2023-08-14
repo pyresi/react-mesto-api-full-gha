@@ -106,7 +106,10 @@ class Api {
   loginUser(email, password) {
     return fetch(`https://pyresi.mesto.back.nomoreparties.co/signin`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
       body: JSON.stringify({
         email: email,
         password: password,
